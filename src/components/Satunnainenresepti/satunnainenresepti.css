@@ -1,0 +1,32 @@
+.satunnainen__resepti {
+  background-color: rgba(43, 43, 43, 0.87);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ohje__lisää {
+  position: absolute;
+  right: 1.5rem;
+  top: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 16.4rem;
+  height: 4.7rem;
+  border-radius: 7px;
+}
+
+.ohje__klick {
+  position: absolute;
+  left: 1.5rem;
+  top: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 16.4rem;
+  height: 4.7rem;
+  border-radius: 7px;
+}

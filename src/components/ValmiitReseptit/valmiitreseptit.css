@@ -1,0 +1,32 @@
+.valmiit__reseptit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  position: relative;
+}
+
+.ruoka {
+  display: flex;
+  justify-content: center;
+  border-bottom: solid;
+  width: 179px;
+  margin: 0.3em;
+  font-size: 1.5rem;
+}
+
+.tarvikkeet {
+  display: flex;
+  justify-content: center;
+  border-bottom: solid;
+  width: 179px;
+  margin: 0.3em;
+}
+.resepti {
+  display: flex;
+  justify-content: center;
+  border-bottom: solid;
+  width: 179px;
+  margin: 0.3em;
+}

@@ -1,0 +1,15 @@
+.Menu {
+  background-color: #001792;
+  display: flex;
+  justify-content: space-around;
+  min-height: 3em;
+  max-height: 3em;
+  align-items: center;
+}
+
+.menu__nappi {
+  background-color: white;
+  border-radius: 50%;
+  width: 1.8em;
+  height: 1.8em;
+}
