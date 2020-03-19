@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Header from '../Header/Header';
-
 import './satunnainenresepti.css';
 
 import { RandomButton } from '../buttons';
