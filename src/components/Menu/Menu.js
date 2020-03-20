@@ -16,7 +16,7 @@ function Menu(props) {
         </div>
       </Link>
 
-      <Link to='/suosikki_reseptit'>
+      <Link to='/suosikit'>
         <div className='menu__nappi'>
           <Favorite htmlColor='white' />
         </div>
