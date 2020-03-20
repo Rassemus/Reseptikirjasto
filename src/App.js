@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import SatunnainenResepti from './components/Satunnainenresepti/SatunnainenResepti';
 import ValmiitReseptit from './components/ValmiitReseptit/ValmiitReseptit';
+import SuosikkiReseptit from './components/SuosikkiReseptit/SuosikkiReseptit';
 import Menu from './components/Menu/Menu';
 
 import './App.css';
@@ -14,6 +15,7 @@ function App() {
       <div className='App'>
         <Header />
         <Route path='/' exact component={SatunnainenResepti} />
+        <Route path='/Suosikki_reseptit' component={SuosikkiReseptit} />
         <Route path='/Reseptit' component={ValmiitReseptit} />
         <Menu />
       </div>
