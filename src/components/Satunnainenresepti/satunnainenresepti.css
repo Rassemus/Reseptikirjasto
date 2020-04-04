@@ -29,4 +29,100 @@
   width: 16.4rem;
   height: 4.7rem;
   border-radius: 7px;
+  overflow-y: scroll;
+  padding: 1em;
+}
+
+.randomReciept__click {
+  position: absolute;
+  top: 20rem;
+  margin: 0 auto 0 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  width: 90%;
+  box-sizing: border-box;
+  height: 25em;
+  border-radius: 7px;
+  overflow-y: scroll;
+  padding: 1em;
+}
+
+.randomReciept__click > h2 {
+  text-shadow: none;
+  animation: ravi 15s infinite linear;
+}
+@keyframes ravi {
+  0% {
+    color: darkblue;
+    text-shadow: 0 0 7px rgb(0, 204, 255), 0 0 20px blue;
+  }
+  10% {
+    color: black;
+    text-shadow: none;
+  }
+  20% {
+    color: darkblue;
+    text-shadow: 0 0 7px rgb(0, 204, 255), 0 0 20px blue;
+  }
+  30% {
+    color: black;
+    text-shadow: none;
+  }
+  40% {
+    color: darkblue;
+    text-shadow: 0 0 7px rgb(0, 204, 255), 0 0 20px blue;
+  }
+  50% {
+    color: black;
+    text-shadow: none;
+  }
+  60% {
+    color: darkblue;
+    text-shadow: 0 0 7px rgb(0, 204, 255), 0 0 20px blue;
+  }
+  70% {
+    color: black;
+    text-shadow: none;
+  }
+  80% {
+    color: darkblue;
+    text-shadow: 0 0 7px rgb(0, 204, 255), 0 0 20px blue;
+  }
+  90% {
+    color: black;
+    text-shadow: none;
+  }
+  100% {
+    color: darkblue;
+    text-shadow: 0 0 7px rgb(0, 204, 255), 0 0 20px blue;
+  }
+}
+.randomReciept__click > h2:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.randomReciept__click > h2:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.randomReciept__click > h2:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.randomReciept__click > h2:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.randomReciept__click > h2:nth-child(5) {
+  animation-delay: 1s;
+}
+.randomReciept__click > h2:nth-child(6) {
+  animation-delay: 1.2s;
+}
+.randomReciept__click > h2:nth-child(7) {
+  animation-delay: 1.4s;
+}
+
+.randomReciept__click > div {
+  border-bottom: solid black;
+  padding: 0.3em;
 }
