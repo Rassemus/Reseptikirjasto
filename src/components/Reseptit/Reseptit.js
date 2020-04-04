@@ -1,16 +1,24 @@
 import React from 'react';
 
-import ValmiitReseptit from '../ValmiitReseptit/ValmiitReseptit';
+import ReseptiKortti from '../ReseptiKortti/ReseptiKortti';
 import Content from '../Content/Content';
 
-import testdata from '../../testdata';
+import reseptilista from '../ReseptiKortti/reseptilista';
 
 function Reseptit(props) {
-  let rows = testdata.map(invoice => {
-    return <ValmiitReseptit data={invoice} />;
+  let rows = reseptilista.map(invoice => {
+    return <ReseptiKortti key={invoice.id} data={invoice} />;
+  });
+  let rows1 = props.data.map(invoice => {
+    return <ReseptiKortti key={invoice.id} data={invoice} />;
   });
 
-  return <Content>{rows}</Content>;
+  return (
+    <Content>
+      {rows}
+      {rows1}
+    </Content>
+  );
 }
 
 export default Reseptit;

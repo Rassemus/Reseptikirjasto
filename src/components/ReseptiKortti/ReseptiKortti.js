@@ -2,12 +2,12 @@ import React from 'react';
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 
-import './valmiitreseptit.css';
+import './ReseptiKortti.css';
 
-function ValmiitReseptit(props) {
+function ReseptiKortti(props) {
   return (
     <div className='valmiit__reseptit'>
-      <div className='ruoka'>{props.data.ruoka}</div>
+      <div className='ruoka'>{props.data.nimi}</div>
       <div className='dropdown'>
         Tarvikkeet
         <KeyboardArrowDown />
@@ -18,8 +18,9 @@ function ValmiitReseptit(props) {
         <KeyboardArrowDown />
         <div className='dropdown-content'>{props.data.resepti}</div>
       </div>
+      <div className='dropdown'>{props.data.pv}</div>
     </div>
   );
 }
 
-export default ValmiitReseptit;
+export default ReseptiKortti;

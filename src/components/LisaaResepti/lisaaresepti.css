@@ -1,29 +1,3 @@
-.reseptiform {
-  display: flex;
-  flex-direction: column;
-}
-
-.reseptiform__row {
-  display: flex;
-}
-
-.reseptiform__row > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0.5em 0.3em;
-  flex: 1 1 auto;
-}
-.reseptiform input,
-.reseptiform select,
-.reseptiform textarea {
-  padding: 0.5em;
-  background-color: rgba(133, 133, 133, 0.3);
-  border: none;
-  border-radius: 0.3em;
-  font-size: 1.2em;
-  font-family: sans-serif;
-  box-sizing: border-box;
-  outline: none;
-  width: 100%;
+.lisaaResepti {
+  padding: 2em;
 }
