@@ -5,18 +5,24 @@ import Content from '../Content/Content';
 
 import reseptilista from '../ReseptiKortti/reseptilista';
 
+import './Reseptit.css';
+
 function Reseptit(props) {
-  let rows = reseptilista.map(invoice => {
-    return <ReseptiKortti key={invoice.id} data={invoice} />;
+  let rows = reseptilista.map((reciept) => {
+    return <ReseptiKortti key={reciept.id} data={reciept} />;
   });
-  let rows1 = props.data.map(invoice => {
-    return <ReseptiKortti key={invoice.id} data={invoice} />;
+  let rows1 = props.data.map((reciept) => {
+    return <ReseptiKortti key={reciept.id} data={reciept} />;
   });
 
   return (
     <Content>
-      {rows}
-      {rows1}
+      <div className='reseptit'>
+        <h2>Reseptit</h2>
+
+        {rows}
+        {rows1}
+      </div>
     </Content>
   );
 }

@@ -21,10 +21,11 @@
   position: relative;
   text-align: center;
   display: flex;
-
+  justify-content: space-between;
   border-bottom: solid;
   width: 179px;
   margin: 0.3em;
+  cursor: pointer;
 }
 .dropdown-content {
   display: none;

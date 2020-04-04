@@ -6,12 +6,13 @@ import Content from '../Content/Content';
 import { FloatingButton } from '../buttons';
 
 function SuosikkiReseptit(props) {
-  let rows = props.data.map(invoice => {
-    return <ReseptiKortti key={invoice.id} data={invoice} />;
+  let rows = props.data.map((reciept) => {
+    return <ReseptiKortti key={reciept.id} data={reciept} />;
   });
 
   return (
     <Content>
+      <h2>Suosikki reseptit</h2>
       {rows}
       <Link to='lisaaresepti'>
         <FloatingButton secondary>+</FloatingButton>
