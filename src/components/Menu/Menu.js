@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Home from '@material-ui/icons/Home';
-import Favorite from '@material-ui/icons/Favorite';
+
 import MenuBook from '@material-ui/icons/MenuBook';
+import Settings from '@material-ui/icons/Settings';
 
 import './Menu.css';
 
@@ -16,15 +17,15 @@ function Menu(props) {
         </div>
       </Link>
 
-      <Link to='/suosikit'>
-        <div className='menu__nappi'>
-          <Favorite htmlColor='white' />
-        </div>
-      </Link>
-
       <Link to='/reseptit'>
         <div className='menu__nappi'>
           <MenuBook htmlColor='white' />
+        </div>
+      </Link>
+
+      <Link to='/settings'>
+        <div className='menu__nappi'>
+          <Settings htmlColor='white' />
         </div>
       </Link>
     </div>

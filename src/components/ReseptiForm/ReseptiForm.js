@@ -11,19 +11,22 @@ import './reseptiform.css';
 class ReseptiForm extends Component {
   constructor(props) {
     super(props);
-
+    const data = props.data
+      ? props.data
+      : {
+          nimi: '',
+          tarvikkeet: '',
+          resepti: '',
+          pv: <ShowDate />,
+        };
     this.state = {
-      data: {
-        nimi: '',
-        tarvikkeet: '',
-        resepti: '',
-        pv: <ShowDate />,
-      },
+      data: data,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleDeleteReciept = this.handleDeleteReciept.bind(this);
   }
 
   handleInputChange(e) {
@@ -48,13 +51,14 @@ class ReseptiForm extends Component {
     e.preventDefault();
     console.log('Form sent');
     let data = Object.assign({}, this.state.data);
-    data.id = uuidv4();
+    data.id = data.id ? data.id : uuidv4();
     this.props.onFormSubmit(data);
-    this.props.history.push('/suosikit');
+    this.props.history.push('/reseptit');
   }
-
-  ShowTime() {
-    Date.now();
+  handleDeleteReciept(event) {
+    event.preventDefault();
+    this.props.onDeleteReciept(this.state.data.id);
+    this.props.history.push('/reseptit');
   }
 
   render() {
@@ -89,20 +93,27 @@ class ReseptiForm extends Component {
               <textarea
                 type='text'
                 name='resepti'
-                value={this.state.data.reseptit}
+                rows='6'
+                value={this.state.data.resepti}
                 onChange={this.handleInputChange}
               />
             </div>
           </div>
           <div className='reseptiform__pvm'>{this.state.data.pv}</div>
-
           <div className='reseptiform__row'>
+            {this.props.onDeleteReciept ? (
+              <div>
+                <Button onClick={this.handleDeleteReciept}>POISTA</Button>
+              </div>
+            ) : (
+              ''
+            )}
             <div>
               <Button onClick={this.handleCancel}>PERUUTA</Button>
             </div>
             <div>
               <Button type='submit' primary>
-                LISÄÄ
+                {this.state.data.id ? 'TALLENNA' : 'LISÄÄ'}
               </Button>
             </div>
           </div>

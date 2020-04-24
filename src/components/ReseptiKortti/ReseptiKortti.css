@@ -1,8 +1,8 @@
-.valmiit__reseptit {
+.reseptikortti {
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
-  align-items: center;
+
   color: black;
   position: relative;
   margin-top: 2rem;
@@ -10,7 +10,7 @@
 
 .ruoka {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border-bottom: solid;
   width: 179px;
   margin: 0.3em;
@@ -38,4 +38,31 @@
 }
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.reseptikortti .reseptikortti__linkki {
+  max-width: 1em;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.reseptikortti:hover .reseptikortti__linkki {
+  display: flex;
+}
+
+.reseptikortti__linkki a {
+  color: black;
+}
+
+.napit {
+  margin-top: 0.8em;
+}
+.ostoskori {
+  padding-top: 0.3em;
+}
+
+.suosikki__nappi {
+  background-color: red;
 }

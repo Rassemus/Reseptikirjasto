@@ -1,10 +1,10 @@
 const testdata = [
   {
-    id: '1',
+    id: '6',
     nimi: '',
     tarvikkeet: '',
-    resepti: ''
-  }
+    resepti: '',
+  },
 ];
 
 export default testdata;

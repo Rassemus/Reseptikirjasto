@@ -10,8 +10,9 @@ const reseptilista = [
   {
     id: '2',
     nimi: 'Kinkkupizza',
-    tarvikkeet:
+    tarvikkeet: [
       'vehnäjauhoja, hiivaa, öljyä, vettä, tomaattipyre, kinkkusuikale, juustoraaste',
+    ],
     resepti:
       'Liuota hiiva kädenlämpöiseen veteen, lisää jauhot samalla sekoittaen, anna taikinan kohota noin 20min. Kaulitse taikina ohueksi levyksi, levitä tomaattipyre taikinan päälle ja levillete kinkkusuikaleet ja juustoraastee päälle',
     pv: '6.4.2020',
