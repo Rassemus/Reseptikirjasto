@@ -35,8 +35,7 @@
 
 .randomReciept__click {
   position: absolute;
-  top: 20rem;
-  margin: 0 auto 0 1.5em;
+  margin: auto auto 0 1.5em;
   display: flex;
   flex-direction: column;
   align-items: center;

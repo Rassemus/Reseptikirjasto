@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import reseptilista from '../ReseptiKortti/reseptilista';
-
 import './satunnainenresepti.css';
 
 import { RandomButton } from '../buttons';
@@ -16,7 +14,7 @@ function SatunnainenResepti(props) {
   );
   const setToRandom = (random) => setToSelected(random);
 
-  let parse = reseptilista.concat(props.data);
+  let parse = props.data;
 
   const randomRecieptClick = (props) => {
     let randomReciept = parse[Math.floor(Math.random() * parse.length)];
