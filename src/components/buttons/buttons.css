@@ -38,6 +38,11 @@
   color: black;
 }
 
+.button--grey {
+  background-color: gray;
+  color: black;
+}
+
 .button--secondary:active {
   background-color: rgb(48, 233, 2);
 }

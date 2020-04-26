@@ -15,10 +15,11 @@ class ReseptiForm extends Component {
       ? props.data
       : {
           nimi: '',
-          tarvikkeet: '',
+          tarvike: '',
           resepti: '',
           pv: <ShowDate />,
         };
+
     this.state = {
       data: data,
     };
@@ -29,9 +30,9 @@ class ReseptiForm extends Component {
     this.handleDeleteReciept = this.handleDeleteReciept.bind(this);
   }
 
-  handleInputChange(e) {
+  handleInputChange(e, index) {
     const target = e.target;
-    const value = target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -51,8 +52,10 @@ class ReseptiForm extends Component {
     e.preventDefault();
     console.log('Form sent');
     let data = Object.assign({}, this.state.data);
+    let tarvikedata = Object.assign({}, this.state.tarvikedata);
+    data.maara = parseFloat(data.maara);
     data.id = data.id ? data.id : uuidv4();
-    this.props.onFormSubmit(data);
+    this.props.onFormSubmit(data, tarvikedata);
     this.props.history.push('/reseptit');
   }
   handleDeleteReciept(event) {
@@ -76,17 +79,19 @@ class ReseptiForm extends Component {
               />
             </div>
           </div>
+
           <div className='reseptiform__row'>
             <div>
               <label htmlFor='tarvikkeet'>Tarvikkeet</label>
               <input
                 type='text'
-                name='tarvikkeet'
-                value={this.state.data.tarvikkeet}
+                name='tarvike'
+                value={this.state.data.tarvike}
                 onChange={this.handleInputChange}
               />
             </div>
           </div>
+
           <div className='reseptiform__row'>
             <div>
               <label htmlFor='resepti'>Resepti</label>

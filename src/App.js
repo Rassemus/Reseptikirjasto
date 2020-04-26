@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import SatunnainenResepti from './components/Satunnainenresepti/SatunnainenResepti';
-import OstoslistaForm from './components/Ostoslista/OstoslistaForm';
 import Settings from './components/Settings/Settings';
 import Reseptit from './components/Reseptit/Reseptit';
 import LisaaResepti from './components/LisaaResepti/LisaaResepti';
@@ -19,12 +18,11 @@ class App extends Component {
     super(props);
     this.state = {
       data: reseptilista,
-      cartdata: ['kissas'],
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handeleDeleteReciept = this.handeleDeleteReciept.bind(this);
-    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleSelectListForm = this.handleSelectListForm.bind(this);
   }
 
   handleFormSubmit(newdata) {
@@ -39,16 +37,13 @@ class App extends Component {
       data: storeddata,
     });
   }
-  handleAddToCart(newdata) {
-    let storeddata = this.state.data.slice();
-    const index = storeddata.findIndex((reciept) => reciept.id === newdata.id);
-    if (index >= 0) {
-      storeddata[index] = newdata;
-    } else {
-      storeddata.push(newdata);
-    }
+
+  handleSelectListForm(newitem) {
+    let selectList = this.state.selectList.slice();
+    selectList.push(newitem);
+    selectList.sort();
     this.setState({
-      data: storeddata,
+      selectList: selectList,
     });
   }
 
@@ -77,13 +72,19 @@ class App extends Component {
 
           <Route
             path='/lisaaresepti'
-            render={() => <LisaaResepti onFormSubmit={this.handleFormSubmit} />}
+            render={() => (
+              <LisaaResepti
+                onFormSubmit={this.handleFormSubmit}
+                selectList={this.state.selectList}
+              />
+            )}
           />
           <Route
             path='/edit/:id'
             render={(props) => (
               <EditReciept
                 data={this.state.data}
+                selectList={this.state.selectList}
                 onFormSubmit={this.handleFormSubmit}
                 onDeleteReciept={this.handeleDeleteReciept}
                 {...props}

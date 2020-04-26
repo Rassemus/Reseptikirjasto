@@ -14,24 +14,20 @@ function SatunnainenResepti(props) {
   );
   const setToRandom = (random) => setToSelected(random);
 
-  let parse = props.data;
+  let reciept = props.data;
 
   const randomRecieptClick = (props) => {
-    let randomReciept = parse[Math.floor(Math.random() * parse.length)];
+    let randomReciept = reciept[Math.floor(Math.random() * reciept.length)];
 
     setToRandom(
-      true ? (
-        <div className='randomReciept__click'>
-          <h2>{randomReciept.nimi}</h2>
-          <h3>Tarvikkeet</h3>
-          <div>{randomReciept.tarvikkeet}</div>
+      <div className='randomReciept__click'>
+        <h2>{randomReciept.nimi}</h2>
+        <h3>Tarvikkeet</h3>
+        <div>{randomReciept.tarvike}</div>
 
-          <h3>Resepti</h3>
-          <div>{randomReciept.resepti}</div>
-        </div>
-      ) : (
-        false
-      )
+        <h3>Resepti</h3>
+        <div>{randomReciept.resepti}</div>
+      </div>
     );
   };
 

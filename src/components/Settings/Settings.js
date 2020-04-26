@@ -5,7 +5,9 @@ import Content from '../Content/Content';
 function Settings(props) {
   return (
     <Content>
-      <h2>Settings</h2>
+      <div className='settings'>
+        <h2>Asetukset</h2>
+      </div>
     </Content>
   );
 }

@@ -21,7 +21,7 @@ function ReseptiKortti(props) {
         <div className='dropdown'>
           Tarvikkeet
           <KeyboardArrowDown />
-          <div className='dropdown-content'>{props.data.tarvikkeet}</div>
+          <div className='dropdown-content'>{props.data.tarvike}</div>
         </div>
         <div className='dropdown'>
           Resepti
