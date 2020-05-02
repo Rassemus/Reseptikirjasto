@@ -5,7 +5,7 @@ import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import ArrowRight from '@material-ui/icons/ArrowRight';
 
 import './ReseptiKortti.css';
-
+//Reseptikortti näkyvyyden määrittely
 function ReseptiKortti(props) {
   return (
     <div className='reseptikortti'>
@@ -21,7 +21,10 @@ function ReseptiKortti(props) {
         <div className='dropdown'>
           Tarvikkeet
           <KeyboardArrowDown />
-          <div className='dropdown-content'>{props.data.tarvike}</div>
+          <div className='dropdown-content'>
+            {props.data.tarvike}
+            {props.data.maara}
+          </div>
         </div>
         <div className='dropdown'>
           Resepti

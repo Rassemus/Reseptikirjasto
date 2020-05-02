@@ -8,6 +8,7 @@ import { FloatingButton } from '../buttons';
 import './Reseptit.css';
 
 function Reseptit(props) {
+  //otetaan data ja muutetaan reseptikortin esitys muottoon
   let rows = props.data.map((reciept) => {
     return <ReseptiKortti key={reciept.id} data={reciept} />;
   });

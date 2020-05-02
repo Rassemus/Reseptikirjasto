@@ -3,22 +3,22 @@ import React, { useState } from 'react';
 import './satunnainenresepti.css';
 
 import { RandomButton } from '../buttons';
-
+//Satunnaisen reseptin näyttävä muuttuja
 const Display = ({ selected }) => <div>{selected}</div>;
 
 function SatunnainenResepti(props) {
   const [selected, setToSelected] = useState(
     <div className='ohje__klick'>
-      {'tai klikkaa alla olevaa nappia ja katso satunnainen resepti.'}
+      {'Klikkaa alla olevaa nappia ja katso satunnainen resepti.'}
     </div>
   );
   const setToRandom = (random) => setToSelected(random);
-
+  //props.data.reciept lyhennetty reciept muotoon
   let reciept = props.data;
-
+  //satunnaiisen reseptin klikkaus toiminto
   const randomRecieptClick = (props) => {
     let randomReciept = reciept[Math.floor(Math.random() * reciept.length)];
-
+    //Satunnaisen reseptin esitys
     setToRandom(
       <div className='randomReciept__click'>
         <h2>{randomReciept.nimi}</h2>
@@ -34,7 +34,9 @@ function SatunnainenResepti(props) {
   return (
     <div className='satunnainen__resepti'>
       <div className='ohje__lisää'>Lisää suosikki reseptejä</div>
-
+      <div className='center'>
+        <div className='ohje__tai'>tai</div>
+      </div>
       <Display selected={selected} />
 
       <RandomButton primary onClick={randomRecieptClick}>

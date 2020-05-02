@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-
-import ShowDate from '../Date/ShowDate';
+import moment from 'moment';
 
 import Button from '../buttons';
 
@@ -17,7 +16,7 @@ class ReseptiForm extends Component {
           nimi: '',
           tarvike: '',
           resepti: '',
-          pv: <ShowDate />,
+          pv: new Date().toISOString(),
         };
 
     this.state = {
@@ -30,7 +29,7 @@ class ReseptiForm extends Component {
     this.handleDeleteReciept = this.handleDeleteReciept.bind(this);
   }
 
-  handleInputChange(e, index) {
+  handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -42,22 +41,21 @@ class ReseptiForm extends Component {
       },
     });
   }
-
+  //peruutus
   handleCancel(event) {
     event.preventDefault();
     this.props.history.goBack();
   }
-
+  //datan tallennus
   handleSubmit(e) {
     e.preventDefault();
     console.log('Form sent');
     let data = Object.assign({}, this.state.data);
-    let tarvikedata = Object.assign({}, this.state.tarvikedata);
-    data.maara = parseFloat(data.maara);
     data.id = data.id ? data.id : uuidv4();
-    this.props.onFormSubmit(data, tarvikedata);
+    this.props.onFormSubmit(data);
     this.props.history.push('/reseptit');
   }
+  //datan poistaminen
   handleDeleteReciept(event) {
     event.preventDefault();
     this.props.onDeleteReciept(this.state.data.id);
@@ -79,10 +77,9 @@ class ReseptiForm extends Component {
               />
             </div>
           </div>
-
           <div className='reseptiform__row'>
             <div>
-              <label htmlFor='tarvikkeet'>Tarvikkeet</label>
+              <label htmlFor='tarvike'>Tarvike</label>
               <input
                 type='text'
                 name='tarvike'
@@ -104,7 +101,9 @@ class ReseptiForm extends Component {
               />
             </div>
           </div>
-          <div className='reseptiform__pvm'>{this.state.data.pv}</div>
+          <div className='reseptiform__pvm'>
+            {moment(this.state.data.pv).format('D.M.Y')}
+          </div>
           <div className='reseptiform__row'>
             {this.props.onDeleteReciept ? (
               <div>

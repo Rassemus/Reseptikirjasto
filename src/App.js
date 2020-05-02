@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import firebase from './firebase';
 
 import Header from './components/Header/Header';
 import SatunnainenResepti from './components/Satunnainenresepti/SatunnainenResepti';
@@ -9,50 +10,57 @@ import LisaaResepti from './components/LisaaResepti/LisaaResepti';
 import Menu from './components/Menu/Menu';
 import EditReciept from './components/EditReciept/EditReciept';
 
-import reseptilista from './components/ReseptiKortti/reseptilista';
-
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: reseptilista,
+      data: [],
     };
 
+    this.dbRef = firebase.firestore();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handeleDeleteReciept = this.handeleDeleteReciept.bind(this);
-    this.handleSelectListForm = this.handleSelectListForm.bind(this);
+  }
+
+  componentDidMount() {
+    this.refData = this.dbRef.collection('data');
+    this.refData.orderBy('pv', 'desc').onSnapshot((docs) => {
+      let data = [];
+      docs.forEach((doc) => {
+        let docdata = doc.data();
+        data.push(docdata);
+      });
+      this.setState({
+        data: data,
+      });
+    });
   }
 
   handleFormSubmit(newdata) {
-    let storeddata = this.state.data.slice();
-    const index = storeddata.findIndex((reciept) => reciept.id === newdata.id);
-    if (index >= 0) {
-      storeddata[index] = newdata;
-    } else {
-      storeddata.push(newdata);
-    }
-    this.setState({
-      data: storeddata,
-    });
-  }
+    // let storeddata = this.state.data.slice();
+    // const index = storeddata.findIndex((reciept) => reciept.id === newdata.id);
+    // if (index >= 0) {
+    //   storeddata[index] = newdata;
+    // } else {
+    //   storeddata.push(newdata);
+    // }
+    // this.setState({
+    //   data: storeddata,
+    // });
 
-  handleSelectListForm(newitem) {
-    let selectList = this.state.selectList.slice();
-    selectList.push(newitem);
-    selectList.sort();
-    this.setState({
-      selectList: selectList,
-    });
+    this.refData.doc(newdata.id).set(newdata);
   }
 
   handeleDeleteReciept(id) {
-    let storeddata = this.state.data.slice();
-    storeddata = storeddata.filter((reciept) => reciept.id !== id);
-    this.setState({
-      data: storeddata,
-    });
+    this.refData
+      .doc(id)
+      .delete()
+      .then()
+      .catch((error) => {
+        console.error('virhe tietoa poistettaessa: ', error);
+      });
   }
 
   render() {
@@ -72,19 +80,13 @@ class App extends Component {
 
           <Route
             path='/lisaaresepti'
-            render={() => (
-              <LisaaResepti
-                onFormSubmit={this.handleFormSubmit}
-                selectList={this.state.selectList}
-              />
-            )}
+            render={() => <LisaaResepti onFormSubmit={this.handleFormSubmit} />}
           />
           <Route
             path='/edit/:id'
             render={(props) => (
               <EditReciept
                 data={this.state.data}
-                selectList={this.state.selectList}
                 onFormSubmit={this.handleFormSubmit}
                 onDeleteReciept={this.handeleDeleteReciept}
                 {...props}
