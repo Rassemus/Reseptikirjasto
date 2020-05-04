@@ -5,6 +5,7 @@ import ReseptiForm from '../ReseptiForm/ReseptiForm';
 import './LisaaResepti.css';
 
 function LisaaResepti(props) {
+  //reseptien lisääminen formilta
   return (
     <Content>
       <div className='LisaaResepti'>

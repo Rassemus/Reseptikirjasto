@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import moment from 'moment';
+
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import ArrowRight from '@material-ui/icons/ArrowRight';
 
@@ -31,9 +33,8 @@ function ReseptiKortti(props) {
           <KeyboardArrowDown />
           <div className='dropdown-content'>{props.data.resepti}</div>
         </div>
-        <div className='dropdown'>{props.data.pv}</div>
+        <div className='dropdown'>{moment(props.data.pv).format('D.M.Y')}</div>
       </div>
-      <div className='napit'></div>
     </div>
   );
 }

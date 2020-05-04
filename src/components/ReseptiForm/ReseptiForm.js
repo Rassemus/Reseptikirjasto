@@ -28,7 +28,7 @@ class ReseptiForm extends Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleDeleteReciept = this.handleDeleteReciept.bind(this);
   }
-
+  //käsittelee input lomakkeita
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;

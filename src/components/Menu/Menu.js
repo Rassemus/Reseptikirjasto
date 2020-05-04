@@ -4,29 +4,24 @@ import { Link } from 'react-router-dom';
 import Home from '@material-ui/icons/Home';
 
 import MenuBook from '@material-ui/icons/MenuBook';
-import Settings from '@material-ui/icons/Settings';
+import Person from '@material-ui/icons/Person';
 
 import './Menu.css';
 
 function Menu(props) {
+  //menu palkki, linkit eri osioihin
   return (
     <div className='Menu'>
       <Link to='/'>
-        <div className='menu__nappi'>
-          <Home htmlColor='white' />
-        </div>
+        <Home htmlColor='white' />
       </Link>
 
       <Link to='/reseptit'>
-        <div className='menu__nappi'>
-          <MenuBook htmlColor='white' />
-        </div>
+        <MenuBook htmlColor='white' />
       </Link>
 
-      <Link to='/settings'>
-        <div className='menu__nappi'>
-          <Settings htmlColor='white' />
-        </div>
+      <Link to='/profile'>
+        <Person htmlColor='white' />
       </Link>
     </div>
   );

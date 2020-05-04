@@ -1,19 +1,30 @@
 .reseptikortti {
   display: flex;
-
   justify-content: center;
-
   color: black;
   position: relative;
   margin-top: 2rem;
 }
 
+.reseptikortti__ryhma {
+  background-color: lightskyblue;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1em;
+}
+
 .ruoka {
   display: flex;
   justify-content: space-between;
-  border-bottom: solid;
-  width: 179px;
+  align-items: center;
+  border-radius: 0.5em;
+  background-color: lightgrey;
+  width: 15rem;
   margin: 0.3em;
+  padding: 0.5em;
   font-size: 1.5rem;
 }
 
@@ -22,8 +33,10 @@
   text-align: center;
   display: flex;
   justify-content: space-between;
-  border-bottom: solid;
-  width: 179px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  background-color: lightgrey;
+  width: 15rem;
   margin: 0.3em;
   cursor: pointer;
 }
@@ -54,15 +67,4 @@
 
 .reseptikortti__linkki a {
   color: black;
-}
-
-.napit {
-  margin-top: 0.8em;
-}
-.ostoskori {
-  padding-top: 0.3em;
-}
-
-.suosikki__nappi {
-  background-color: red;
 }

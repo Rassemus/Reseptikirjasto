@@ -19,7 +19,7 @@ const Button = ({ className = '', primary, secondary, grey, ...props }) => {
     />
   );
 };
-
+//Leijuva nappi
 const FloatingButton = ({ className = '', ...props }) => {
   return (
     <Button
@@ -28,6 +28,7 @@ const FloatingButton = ({ className = '', ...props }) => {
     />
   );
 };
+//satunnaisen reseptin nappi
 const RandomButton = ({ className = '', ...props }) => {
   return (
     <Button className={classNames(['button--random', className])} {...props} />

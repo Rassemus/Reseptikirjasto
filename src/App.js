@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import firebase from './firebase';
+import firebase, { provider, auth } from './firebase';
 
 import Header from './components/Header/Header';
 import SatunnainenResepti from './components/Satunnainenresepti/SatunnainenResepti';
-import Settings from './components/Settings/Settings';
+import Profile from './components/Profile/Profile';
 import Reseptit from './components/Reseptit/Reseptit';
 import LisaaResepti from './components/LisaaResepti/LisaaResepti';
 import Menu from './components/Menu/Menu';
 import EditReciept from './components/EditReciept/EditReciept';
+import Content from './components/Content/Content';
+import Button from './components/buttons';
 
 import './App.css';
 
@@ -17,42 +19,47 @@ class App extends Component {
     super(props);
     this.state = {
       data: [],
+      user: null,
+      error: null,
     };
 
     this.dbRef = firebase.firestore();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handeleDeleteReciept = this.handeleDeleteReciept.bind(this);
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
-    this.refData = this.dbRef.collection('data');
-    this.refData.orderBy('pv', 'desc').onSnapshot((docs) => {
-      let data = [];
-      docs.forEach((doc) => {
-        let docdata = doc.data();
-        data.push(docdata);
-      });
-      this.setState({
-        data: data,
-      });
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          user: user,
+        });
+        this.refData = this.dbRef
+          .collection('users')
+          .doc(user.uid)
+          .collection('data');
+        this.unsubscribe = this.refData
+          .orderBy('pv', 'desc')
+          .onSnapshot((docs) => {
+            let data = [];
+            docs.forEach((doc) => {
+              let docdata = doc.data();
+              data.push(docdata);
+            });
+            this.setState({
+              data: data,
+            });
+          });
+      }
     });
   }
-
+  //Käsittelee ja tallentaa datan tietokantaan
   handleFormSubmit(newdata) {
-    // let storeddata = this.state.data.slice();
-    // const index = storeddata.findIndex((reciept) => reciept.id === newdata.id);
-    // if (index >= 0) {
-    //   storeddata[index] = newdata;
-    // } else {
-    //   storeddata.push(newdata);
-    // }
-    // this.setState({
-    //   data: storeddata,
-    // });
-
     this.refData.doc(newdata.id).set(newdata);
   }
-
+  //Poistaa datan tietokannasta
   handeleDeleteReciept(id) {
     this.refData
       .doc(id)
@@ -62,8 +69,53 @@ class App extends Component {
         console.error('virhe tietoa poistettaessa: ', error);
       });
   }
+  //Kirjautuminen
+  login() {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user: user,
+          error: null,
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        this.setState({
+          error: errorMessage,
+        });
+      });
+  }
+  //ulos kirjaus
+  logout() {
+    this.unsubscribe();
+    auth.signOut().then(() => {
+      this.setState({
+        user: null,
+      });
+      this.refData = null;
+    });
+  }
 
   render() {
+    if (!this.state.user) {
+      return (
+        <Router>
+          <div className='App'>
+            <Header />
+            <Content>
+              <p>Et ole vielä kirjautunut sisälle</p>
+              <Button primary onClick={this.login}>
+                Kirjuadu
+              </Button>
+              <div>{this.state.error ? <p>{this.state.error}</p> : null}</div>
+            </Content>
+            <Menu />
+          </div>
+        </Router>
+      );
+    }
     return (
       <Router>
         <div className='App'>
@@ -93,7 +145,12 @@ class App extends Component {
               />
             )}
           />
-          <Route path='/Settings' render={() => <Settings />} />
+          <Route
+            path='/Profile'
+            render={() => (
+              <Profile onLogout={this.logout} user={this.state.user} />
+            )}
+          />
 
           <Menu />
         </div>
